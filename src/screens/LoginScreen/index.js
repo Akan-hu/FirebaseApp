@@ -1,4 +1,12 @@
-import {View, Text, TextInput, Button, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  Image,
+  Pressable,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import auth from '@react-native-firebase/auth';
@@ -9,7 +17,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emptyInput, setEmptyInput] = useState('');
-
+  const [showPas, setShowPass] = useState(true);
   const handlePress = async () => {
     try {
       if (email.length !== 0 && password.length !== 0) {
@@ -49,13 +57,29 @@ const LoginPage = () => {
           value={email}
           onChangeText={val => setEmail(val)}
         />
-        <TextInput
-          placeholder="Enter Password"
-          style={styles.inputText}
-          value={password}
-          onChangeText={val => setPassword(val)}
-          secureTextEntry={true}
-        />
+        <View style={styles.passwordView}>
+          <TextInput
+            placeholder="Enter Password"
+            style={styles.inputText1}
+            value={password}
+            onChangeText={val => setPassword(val)}
+            secureTextEntry={showPas}
+          />
+          <Pressable onPress={() => setShowPass(!showPas)}>
+            {showPas ? (
+              <Image
+                source={require('../../assets/hide_password.png')}
+                style={styles.imgStyle}
+              />
+            ) : (
+              <Image
+                source={require('../../assets/show_passwhord.png')}
+                style={styles.imgStyle}
+              />
+            )}
+          </Pressable>
+        </View>
+
         {passwordError && <Text>{passwordError}</Text>}
 
         <View style={styles.buttonView}>

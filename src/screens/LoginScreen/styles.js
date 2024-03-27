@@ -13,6 +13,20 @@ export const styles = StyleSheet.create({
     borderColor: '#003366',
     paddingLeft: 15,
   },
+  imgStyle: {
+    width: 25,
+    height: 25,
+    marginRight: 10,
+  },
+  passwordView: {
+    marginTop: 30,
+    borderWidth: 1.5,
+    borderColor: '#003366',
+    paddingLeft: 15,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   headingText: {
     textAlign: 'center',
     marginTop: 80,
