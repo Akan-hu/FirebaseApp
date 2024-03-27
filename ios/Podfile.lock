@@ -831,6 +831,9 @@ PODS:
     - React-Core (= 0.72.12)
     - React-jsi (= 0.72.12)
     - ReactCommon/turbomodule/core (= 0.72.12)
+  - Firebase/Auth (10.22.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.22.0)
   - Firebase/CoreOnly (10.22.0):
     - FirebaseCore (= 10.22.0)
   - Firebase/Database (10.22.0):
@@ -840,6 +843,13 @@ PODS:
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.22.0)
   - FirebaseAppCheckInterop (10.23.0)
+  - FirebaseAuth (10.22.0):
+    - FirebaseAppCheckInterop (~> 10.17)
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+    - RecaptchaInterop (~> 100.0)
   - FirebaseCore (10.22.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
@@ -876,15 +886,28 @@ PODS:
   - FirebaseSharedSwift (10.23.0)
   - fmt (6.2.1)
   - glog (0.3.5)
+  - GoogleUtilities/AppDelegateSwizzler (7.13.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
   - GoogleUtilities/Environment (7.13.0):
     - GoogleUtilities/Privacy
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.13.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (7.13.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.13.0)":
     - GoogleUtilities/Privacy
   - GoogleUtilities/Privacy (7.13.0)
+  - GoogleUtilities/Reachability (7.13.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
   - "gRPC-C++ (1.62.1)":
     - "gRPC-C++/Implementation (= 1.62.1)"
     - "gRPC-C++/Interface (= 1.62.1)"
@@ -963,6 +986,7 @@ PODS:
     - gRPC-Core/Privacy (= 1.62.1)
   - gRPC-Core/Interface (1.62.1)
   - gRPC-Core/Privacy (1.62.1)
+  - GTMSessionFetcher/Core (3.3.2)
   - hermes-engine (0.72.12):
     - hermes-engine/Pre-built (= 0.72.12)
   - hermes-engine/Pre-built (0.72.12)
@@ -1274,6 +1298,8 @@ PODS:
   - React-jsinspector (0.72.12)
   - React-logger (0.72.12):
     - glog
+  - react-native-safe-area-context (4.9.0):
+    - React-Core
   - React-NativeModulesApple (0.72.12):
     - hermes-engine
     - React-callinvoker
@@ -1384,9 +1410,14 @@ PODS:
     - React-jsi (= 0.72.12)
     - React-logger (= 0.72.12)
     - React-perflogger (= 0.72.12)
+  - RecaptchaInterop (100.0.0)
   - RNFBApp (19.0.1):
     - Firebase/CoreOnly (= 10.22.0)
     - React-Core
+  - RNFBAuth (19.1.0):
+    - Firebase/Auth (= 10.22.0)
+    - React-Core
+    - RNFBApp
   - RNFBDatabase (19.0.1):
     - Firebase/Database (= 10.22.0)
     - React-Core
@@ -1396,6 +1427,12 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
     - RNFBApp
+  - RNGestureHandler (2.15.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+  - RNScreens (3.29.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1423,6 +1460,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -1441,8 +1479,11 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1451,6 +1492,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheckInterop
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -1462,10 +1504,12 @@ SPEC REPOS:
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - GTMSessionFetcher
     - leveldb-library
     - libevent
     - nanopb
     - PromisesObjC
+    - RecaptchaInterop
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1511,6 +1555,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-perflogger:
@@ -1547,10 +1593,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
   RNFBDatabase:
     :path: "../node_modules/@react-native-firebase/database"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1563,6 +1615,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 0976da6bc1ebd3ea9b3a65d04be2c0117d304c4c
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
+  FirebaseAuth: bbe4c68f958504ba9e54aee181adbdf5b664fbc6
   FirebaseCore: 0326ec9b05fbed8f8716cddbf0e36894a13837f7
   FirebaseCoreExtension: cb88851781a24e031d1b58e0bd01eb1f46b044b5
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
@@ -1575,6 +1628,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
   "gRPC-C++": 12f33a422dcab88dcd0c53e52cd549a929f0f244
   gRPC-Core: 6ec9002832e1e22c5bb8c54994b050b0ee4205c6
+  GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
   hermes-engine: e89344b9e9e54351c3c5cac075e0275148fb37ba
   leveldb-library: 06a69cc7582d64b29424a63e085e683cc188230a
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -1595,6 +1649,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 95bdf0ab46024ca9849e08739b6abd8fe489cd33
   React-jsinspector: 8e291ed0ab371314de269001d6b9b25db6aabf42
   React-logger: d4010de0b0564e63637ad08373bc73b5d919974b
+  react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
   React-NativeModulesApple: 30a72273f7fcf81d47742c1edc998ea88d34739a
   React-perflogger: 63606aeab27683112e1bd4ef25bd099ec1cb03f8
   React-RCTActionSheet: 5b39fc2b479d47325e5ac95193c482044bfebbc6
@@ -1612,9 +1667,13 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 9b8a8057b343493bcb2a553e157a299c18051a5c
   React-utils: 147af032f68db757b4f885b2b5131dc23a7fd7e7
   ReactCommon: ef68590fe8751d802740801dfb893b80caa3a046
+  RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNFBApp: d0be9224f318cfd6501f1f83809453800cd04868
+  RNFBAuth: 4c42e923bc40ca9d11dad1df683a32a55d3199a2
   RNFBDatabase: c570838c2ec61e7a439f812278afafdfd5166263
   RNFBFirestore: 5fc53b5b7c8fe0863a7ccee49197f1ce0946abff
+  RNGestureHandler: e8136f17f433457f317408580c27491a49f77a4c
+  RNScreens: a79430706d7d993b1e5c0dde8b51fd1af41ad432
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 87e59f6d458e5061d2421086c5de994b3f7cd151
 
